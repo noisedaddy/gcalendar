@@ -21,9 +21,8 @@ trait CalendarEventTrait
 
         $event = new \Google_Service_Calendar_Event();
         $event->setSummary($data['name']);
-//        $event->setLocation();
-
-        $event->setDescription('Description');
+        $event->setLocation(config('app.timezone'));
+        $event->setDescription($data['phone']);
         $event->setVisibility('public');
         $start = new \Google_Service_Calendar_EventDateTime();
         $start->setDateTime(Carbon::create($data['datetimepicker']));
