@@ -72,7 +72,7 @@ trait CalendarEventTrait
     function getClient()
     {
         $client = new \Google_Client();
-        $client->setApplicationName('Google Calendar API PHP Quickstart');
+        $client->setApplicationName('Google Calendar API');
         $client->setScopes(\Google_Service_Calendar::CALENDAR);
         $client->setAuthConfig(storage_path('app/google-calendar/credentials.json'));
 //        $client->setAccessType('offline');
