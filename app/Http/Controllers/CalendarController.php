@@ -32,7 +32,7 @@ class CalendarController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|string|email|max:255',
             'phone' => 'required|numeric',
-            'datetimepicker' => 'date_format:Y/m/d H:i',
+            'datetimepicker' => 'required|date_format:Y/m/d H:i',
             'captcha' => 'required|captcha',
         ]);
 
