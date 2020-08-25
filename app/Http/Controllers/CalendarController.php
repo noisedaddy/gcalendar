@@ -32,6 +32,7 @@ class CalendarController extends Controller
             'email' => 'required|string|email|max:255',
             'phone' => 'required|numeric',
             'datetimepicker' => 'date_format:Y/m/d H:i',
+            'captcha' => 'required|captcha',
         ]);
 
         $event = $this->addEvent($validatedData);
@@ -42,7 +43,19 @@ class CalendarController extends Controller
             return response()->json('Something went wrong, please try again!');
         };
 
+//        $request->session()->flash('success', 'Successfully validated and event has been saved');
         return response()->json('Successfully validated and event has been saved');
 
     }
+
+    /**
+     * Refresh captcha
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function refreshCaptcha()
+    {
+        return captcha_img();
+    }
+
 }

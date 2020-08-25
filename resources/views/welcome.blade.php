@@ -92,6 +92,9 @@
                 Add Event
             </div>
             <div class="card-body">
+{{--                    @if(\Illuminate\Support\Facades\Session::has('success'))--}}
+{{--                        <p class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</p>--}}
+{{--                    @endif--}}
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -119,6 +122,24 @@
                         <label for="datetimepicker">Date&Time :</label>
                         <input id="datetimepicker" name="datetimepicker" class="form-control" type="text" >
                     </div>
+                    <div class="form-group row {{ $errors->has('captcha') ? 'has-error' : '' }}">
+                        <div class="col-md-4 captcha">
+                            <small>If you are receiving CAPTCHA error, please click Refresh button before your next attempt, even if the code has changed. Thank you.</small>
+                            <span>{!! captcha_img() !!}</span>
+                            <button tabindex="-1" type="button" onclick="call_captcha();" class="pull-right btn btn-default">Refresh</button>
+                        </div>
+                        <div class="col-md-6 {{ $errors->has('captcha') ? 'has-error' :'' }}">
+                            <input type="text" id="captcha" name="captcha"
+                                   autocomplete="off"
+                                   class="form-control{{ $errors->has('captcha') ? ' is-invalid' : '' }}"
+                                   placeholder="Enter Captcha">
+                            @if ($errors->has('captcha'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{!! $errors->first('captcha') !!}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-primary">Create</button>
                 </form>
             </div>
@@ -132,5 +153,18 @@
             {{--format: '{{ config('app.date_format_js') }}'--}}
         });
     });
+    function call_captcha() {
+        $.ajax({
+            type: 'GET',
+            url: "{{route('refresh_captcha')}}",
+            success: function (data) {
+                $('.captcha span').html(data);
+            }
+        });
+    }
+
+    function closeAlert() {
+        $('.alert').remove();
+    }
 </script>
 </html>

@@ -60,7 +60,8 @@ trait CalendarEventTrait
                 $event->setCreator($creator);*/
 
 //        $nEvent = $service->events->insert('applicantapplicant099@gmail.com', $event);
-        $nEvent = $service->events->insert(env('GOOGLE_CALENDAR_ID'), $event);
+        $primary = (env('GOOGLE_CALENDAR_ID') !== null) ? env('GOOGLE_CALENDAR_ID') : 'applicantapplicant099@gmail.com';
+        $nEvent = $service->events->insert($primary, $event);
         return $nEvent;
     }
 

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'CalendarController@create')->name('gcalendar.welcome');
 Route::post('store', 'CalendarController@store')->name('gcalendar.store');
+Route::get('refresh_captcha', 'CalendarController@refreshCaptcha')->name('refresh_captcha');
 
 //Route::get('/', function () {
 //    return view('welcome');
