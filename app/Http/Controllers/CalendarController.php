@@ -6,6 +6,7 @@ use App\Calendar;
 use App\Http\Controllers\Traits\CalendarEventTrait;
 use App\Jobs\SendEmailNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CalendarController extends Controller
 {
@@ -43,8 +44,7 @@ class CalendarController extends Controller
             return response()->json('Something went wrong, please try again!');
         };
 
-//        $request->session()->flash('success', 'Successfully validated and event has been saved');
-        return response()->json('Successfully validated and event has been saved');
+        return back()->with('success', 'Event submitted successfully.');
 
     }
 

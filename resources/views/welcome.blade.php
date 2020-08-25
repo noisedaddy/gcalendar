@@ -92,9 +92,14 @@
                 Add Event
             </div>
             <div class="card-body">
-{{--                    @if(\Illuminate\Support\Facades\Session::has('success'))--}}
-{{--                        <p class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</p>--}}
-{{--                    @endif--}}
+                @if(Session::has('success'))
+                    <div class="alert alert-success">
+                        {{ Session::get('success') }}
+                        @php
+                            Session::forget('success');
+                        @endphp
+                    </div>
+                @endif
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
