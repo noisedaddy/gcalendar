@@ -113,19 +113,19 @@
                     <div class="form-group">
                         @csrf
                         <label for="name">Name:</label>
-                        <input type="text" class="form-control" name="name"/>
+                        <input type="text" class="form-control" name="name" value="{{ old('name') }}"/>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone :</label>
-                        <input type="text" class="form-control" name="phone"/>
+                        <input type="text" class="form-control" name="phone" value="{{ old('phone') }}"/>
                     </div>
                     <div class="form-group">
                         <label for="email">Email :</label>
-                        <input type="text" class="form-control" name="email"/>
+                        <input type="text" class="form-control" name="email" value="{{ old('email') }}"/>
                     </div>
                     <div class="form-group">
                         <label for="datetimepicker">Date&Time :</label>
-                        <input id="datetimepicker" name="datetimepicker" class="form-control" type="text" >
+                        <input id="datetimepicker" name="datetimepicker" class="form-control" type="text" value="{{ old('datetimepicker') }}">
                     </div>
                     <div class="form-group row {{ $errors->has('captcha') ? 'has-error' : '' }}">
                         <div class="col-md-4 captcha">
